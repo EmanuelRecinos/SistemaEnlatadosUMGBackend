@@ -1,0 +1,22 @@
+digraph G {
+node [shape=record];
+    Usuario1 [label="ID: 1\nNombre: Juan\nApellidos: Pérez\nContraseña: 1234"];
+    Usuario1 -> Usuario2;
+    Usuario2 [label="ID: 2\nNombre: María\nApellidos: González\nContraseña: abcd"];
+    Usuario2 -> Usuario3;
+    Usuario3 [label="ID: 3\nNombre: Carlos\nApellidos: Sánchez\nContraseña: 5678"];
+    Usuario3 -> Usuario4;
+    Usuario4 [label="ID: 4\nNombre: Ana\nApellidos: Martínez\nContraseña: qwerty"];
+    Usuario4 -> Usuario5;
+    Usuario5 [label="ID: 5\nNombre: Luis\nApellidos: Rodríguez\nContraseña: pass123"];
+    Usuario5 -> Usuario6;
+    Usuario6 [label="ID: 6\nNombre: Laura\nApellidos: López\nContraseña: password"];
+    Usuario6 -> Usuario7;
+    Usuario7 [label="ID: 7\nNombre: Pedro\nApellidos: Jiménez\nContraseña: 123abc"];
+    Usuario7 -> Usuario8;
+    Usuario8 [label="ID: 8\nNombre: Elena\nApellidos: Hernández\nContraseña: secure456"];
+    Usuario8 -> Usuario9;
+    Usuario9 [label="ID: 9\nNombre: Jorge\nApellidos: García\nContraseña: mysecret"];
+    Usuario9 -> Usuario10;
+    Usuario10 [label="ID: 10\nNombre: Sofía\nApellidos: Ramírez\nContraseña: hello2025"];
+}
