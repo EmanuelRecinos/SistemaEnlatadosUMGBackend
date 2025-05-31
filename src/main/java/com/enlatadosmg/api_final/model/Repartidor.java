@@ -14,5 +14,7 @@ public class Repartidor {
     private String apellidos;
     private String licencia; // Tipo A, B, C
     private String telefono;
+
+
 }
 

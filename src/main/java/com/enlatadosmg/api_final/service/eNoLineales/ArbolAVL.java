@@ -3,13 +3,16 @@ package com.enlatadosmg.api_final.service.eNoLineales;
 import com.enlatadosmg.api_final.model.Cliente;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Getter
 @Setter
+@Component
 public class ArbolAVL {
     private NodoAVL raiz;
+    private boolean eliminado = false; // <-- Se añade este flag
 
     // ---------- INSERTAR ----------
     public void insertar(Cliente cliente) {
@@ -45,8 +48,10 @@ public class ArbolAVL {
     }
 
     // ---------- ELIMINAR ----------
-    public void eliminar(long cui) {
+    public boolean eliminar(long cui) {
+        eliminado = false; // reinicia el flag antes de eliminar
         raiz = eliminarRecursivo(raiz, cui);
+        return eliminado;
     }
 
     private NodoAVL eliminarRecursivo(NodoAVL nodo, long cui) {
@@ -57,7 +62,7 @@ public class ArbolAVL {
         } else if (cui > nodo.getCliente().getCui()) {
             nodo.setDerecho(eliminarRecursivo(nodo.getDerecho(), cui));
         } else {
-            // Nodo encontrado
+            eliminado = true; // Nodo encontrado y será eliminado
             if (nodo.getIzquierdo() == null || nodo.getDerecho() == null) {
                 nodo = (nodo.getIzquierdo() != null) ? nodo.getIzquierdo() : nodo.getDerecho();
             } else {
@@ -164,6 +169,4 @@ public class ArbolAVL {
             raiz.recorridoInorden(clientes);
         }
     }
-
 }
-

@@ -1,8 +1,9 @@
 package com.enlatadosmg.api_final.service.eLineales;
 
 import com.enlatadosmg.api_final.exception.ExcepcionListaVacia;
+import org.springframework.stereotype.Component;
 
-
+@Component
 public class Cola {
 
     private Lista listaCola;

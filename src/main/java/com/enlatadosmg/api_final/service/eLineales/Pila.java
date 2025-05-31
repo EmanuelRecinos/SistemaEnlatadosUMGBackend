@@ -1,7 +1,9 @@
 package com.enlatadosmg.api_final.service.eLineales;
 
 import com.enlatadosmg.api_final.exception.ExcepcionListaVacia;
+import org.springframework.stereotype.Component;
 
+@Component
 public class Pila extends Lista {
     //Utilizamos constructor de Lista para asignar nombre
     public Pila() {

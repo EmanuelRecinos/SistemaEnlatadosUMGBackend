@@ -2,62 +2,72 @@ package com.enlatadosmg.api_final.controller;
 
 import com.enlatadosmg.api_final.model.Cliente;
 import com.enlatadosmg.api_final.service.eNoLineales.ClienteService;
+import com.enlatadosmg.api_final.util.ReporteCliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 
 @RestController
 @RequestMapping("/clientes")
+@CrossOrigin(origins = "*")
 public class ClienteController {
 
     @Autowired
-    private ClienteService clienteService;
+    private ClienteService service;
 
-    // Crear cliente
-    @PostMapping("/crear")
-    public String crearCliente(@RequestBody Cliente cliente) {
-        clienteService.insertarCliente(cliente);
-        return "Cliente creado con éxito.";
+        @GetMapping("/todos")
+    public List<Cliente> obtenerTodos() {
+        return service.obtenerTodos();
     }
 
-    // Buscar cliente
     @GetMapping("/{cui}")
-    public Cliente buscarCliente(@PathVariable long cui) {
-        return clienteService.buscarCliente(cui);
+    public Cliente obtenerPorCui(@PathVariable long cui) {
+        return service.obtenerPorCui(cui);
     }
 
-    // Modificar cliente
-    @PutMapping("/modificar")
-    public String modificarCliente(@RequestBody Cliente cliente) {
-        clienteService.modificarCliente(cliente);
-        return "Cliente modificado con éxito.";
+    @PostMapping("/agregar")
+    public void agregar(@RequestBody Cliente cliente) throws IOException {
+        service.agregarCliente(cliente);
     }
 
-    // Eliminar cliente
+    @PutMapping("/actualizar/{cui}")
+    public boolean actualizar(@PathVariable long cui, @RequestBody Cliente nuevo) throws IOException {
+        return service.actualizarCliente(cui, nuevo);
+    }
+
     @DeleteMapping("/eliminar/{cui}")
-    public String eliminarCliente(@PathVariable long cui) {
-        clienteService.eliminarCliente(cui);
-        return "Cliente eliminado con éxito.";
+    public boolean eliminar(@PathVariable long cui) throws IOException {
+        return service.eliminarCliente(cui);
     }
 
-    // Cargar clientes desde un archivo CSV
     @PostMapping("/cargar")
-    public String cargarClientesDesdeCSV(@RequestParam("archivoCsv") MultipartFile archivoCsv) {
-        try {
-            clienteService.cargarClientesDesdeCSV(archivoCsv);
-            return "Clientes cargados con éxito desde el archivo.";
-        } catch (IOException e) {
-            return "Error al cargar el archivo: " + e.getMessage();
+    public void cargarDesdeCsv(@RequestParam(defaultValue = "csv/clientes.csv") String path) throws IOException {
+        service.cargarDesdeCsv(path);
+    }
+
+    @GetMapping("/reporte")
+    public void generarReporte(HttpServletResponse response) throws IOException {
+        ReporteCliente.generarReporte(service.getArbolClientes());
+        File imagen = new File("src/main/resources/static/reporte_clientes.png");
+
+        if (imagen.exists()) {
+            response.setContentType("image/png");
+            response.setHeader("Content-Disposition", "inline; filename=reporte_clientes.png");
+
+            // 🔥 Forzar que no se almacene en caché
+            response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
+            response.setHeader("Pragma", "no-cache");
+            response.setDateHeader("Expires", 0);
+
+            Files.copy(imagen.toPath(), response.getOutputStream());
+            response.getOutputStream().flush();
+        } else {
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
         }
     }
-
-    // Mostrar todos los clientes (en formato JSON)
-    @GetMapping("/todos")
-    public List<Cliente> mostrarClientes() {
-        return clienteService.obtenerTodosLosClientes();
-    }
 }
-
