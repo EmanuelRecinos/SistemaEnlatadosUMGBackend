@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Repartidor {
 
-    private long cui; // CUI como identificador único
+    private long cui; // clave
     private String nombre;
     private String apellidos;
     private String licencia; // Tipo A, B, C

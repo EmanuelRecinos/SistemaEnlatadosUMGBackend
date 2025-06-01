@@ -12,9 +12,9 @@ import java.util.List;
 @Component
 public class ArbolAVL {
     private NodoAVL raiz;
-    private boolean eliminado = false; // <-- Se añade este flag
+    private boolean eliminado = false;
 
-    // ---------- INSERTAR ----------
+
     public void insertar(Cliente cliente) {
         raiz = insertarRecursivo(raiz, cliente);
     }
@@ -34,7 +34,7 @@ public class ArbolAVL {
         return balancear(nodo);
     }
 
-    // ---------- BUSCAR ----------
+
     public Cliente buscar(long cui) {
         NodoAVL resultado = buscarRecursivo(raiz, cui);
         return resultado != null ? resultado.getCliente() : null;
@@ -47,7 +47,7 @@ public class ArbolAVL {
                 : buscarRecursivo(nodo.getDerecho(), cui);
     }
 
-    // ---------- ELIMINAR ----------
+
     public boolean eliminar(long cui) {
         eliminado = false; // reinicia el flag antes de eliminar
         raiz = eliminarRecursivo(raiz, cui);
@@ -85,7 +85,7 @@ public class ArbolAVL {
         return nodo;
     }
 
-    // ---------- MODIFICAR ----------
+
     public void modificar(Cliente cliente) {
         NodoAVL nodo = buscarRecursivo(raiz, cliente.getCui());
         if (nodo != null) {
@@ -96,7 +96,7 @@ public class ArbolAVL {
         }
     }
 
-    // ---------- RECORRIDO ----------
+
     public void recorridoInorden() {
         recorridoInordenRecursivo(raiz);
     }
@@ -109,7 +109,7 @@ public class ArbolAVL {
         }
     }
 
-    // ---------- FUNCIONES DE BALANCEO ----------
+
     private int obtenerAltura(NodoAVL nodo) {
         return nodo == null ? 0 : nodo.getAltura();
     }

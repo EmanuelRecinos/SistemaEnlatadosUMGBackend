@@ -59,7 +59,7 @@ public class VehiculoController {
             response.setContentType("image/png");
             response.setHeader("Content-Disposition", "inline; filename=reporte_vehiculos.png");
 
-            // Evitar cache del navegador
+            // Para que no se guarde el caché
             response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
             response.setHeader("Pragma", "no-cache");
             response.setDateHeader("Expires", 0);

@@ -11,6 +11,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class Caja {
 
-    private int correlativo;
+    private int correlativo; //clave
     private LocalDate fechaIngreso;
 }

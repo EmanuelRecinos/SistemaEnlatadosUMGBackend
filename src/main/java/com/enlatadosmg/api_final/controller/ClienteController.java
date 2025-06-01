@@ -59,7 +59,7 @@ public class ClienteController {
             response.setContentType("image/png");
             response.setHeader("Content-Disposition", "inline; filename=reporte_clientes.png");
 
-            // 🔥 Forzar que no se almacene en caché
+            // Para forzar que se borre el cache
             response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
             response.setHeader("Pragma", "no-cache");
             response.setDateHeader("Expires", 0);

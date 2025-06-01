@@ -16,17 +16,5 @@ public class Nodo {
 
         this(data,null);
     }
-    @Override
-
-    public String toString (){
-        return "Nodo{"+
-                "data="+ data+
-                ", sig=" +sig+
-                '}';
-
-
-    }
-
-
 }
 

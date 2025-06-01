@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Vehiculo {
-    private String placa;   // clave única
+    private String placa;   // clave
     private String marca;
     private String modelo;
     private String color;

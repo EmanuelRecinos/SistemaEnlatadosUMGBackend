@@ -8,20 +8,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Cliente {
-    private Long cui;
+    private Long cui; //clave
     private String nombre;
     private String apellido;
     private String telefono;
     private String direccion;
 
-    @Override
-    public String toString() {
-        return "Cliente{" +
-                "CUI=" + cui +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", teléfono='" + telefono + '\'' +
-                ", dirección='" + direccion + '\'' +
-                '}';
-    }
+
 }

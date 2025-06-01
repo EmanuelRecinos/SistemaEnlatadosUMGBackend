@@ -48,7 +48,7 @@ public class ReporteRepartidor {
     public static void generarImagen() throws IOException {
         File dotFile = new File("src/main/resources/static/reporte_repartidores.dot");
         if (dotFile.exists()) {
-            // Se agregan -Gdpi=200 y -Gsize=10,5! para mejorar tamaño y resolución
+
             String command = "dot -Tpng -Gdpi=200 -Gsize=10,5! src/main/resources/static/reporte_repartidores.dot -o src/main/resources/static/reporte_repartidores.png";
             Process process = Runtime.getRuntime().exec(command);
             try {

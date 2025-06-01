@@ -13,7 +13,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://192.168.0.5:8081") // Tu frontend corre en este puerto
+                        .allowedOrigins("http://192.168.0.3:8081")  // Puerto de mi front
                         .allowedMethods("*")
                         .allowedHeaders("*");
             }

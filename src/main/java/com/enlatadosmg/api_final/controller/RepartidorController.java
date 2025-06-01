@@ -70,7 +70,7 @@ public class RepartidorController {
             response.setContentType("image/png");
             response.setHeader("Content-Disposition", "inline; filename=reporte_repartidores.png");
 
-            // 🔥 Estas cabeceras fuerzan que nunca se guarde en caché
+            // Esto fuerza para que no guarde el caché
             response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
             response.setHeader("Pragma", "no-cache");
             response.setDateHeader("Expires", 0);

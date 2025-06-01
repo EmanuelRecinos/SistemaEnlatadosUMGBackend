@@ -19,14 +19,6 @@ public class NodoAVL {
         this.altura = 1; // Un nuevo nodo se crea con altura 1
     }
 
-    @Override
-    public String toString() {
-        return "NodoAVL{" +
-                "cliente=" + cliente +
-                ", altura=" + altura +
-                '}';
-    }
-
     // Método recursivo inorden que agrega los clientes a una lista
     public void recorridoInorden(List<Cliente> clientes) {
         if (izquierdo != null) {

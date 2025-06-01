@@ -92,7 +92,7 @@ public class CsvLoader {
             while ((linea = reader.readLine()) != null) {
                 String[] datos = linea.split(";");
                 if (datos.length == 5) {
-                    long cui = Long.parseLong(datos[0].trim()); // ✅ solo esta declaración
+                    long cui = Long.parseLong(datos[0].trim());
                     String nombre = datos[1].trim();
                     String apellidos = datos[2].trim();
                     String telefono = datos[3].trim();
